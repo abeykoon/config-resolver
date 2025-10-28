@@ -1,0 +1,123 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Config Resolution Service",
+    "description": "Service for resolving environment variable values",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9090",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/test/resolve/values": {
+      "post": {
+        "summary": "Resolve environment variables",
+        "description": "Resolves the values of requested environment variables",
+        "operationId": "resolveValues",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveRequest"
+              },
+              "example": {
+                "resolve": [
+                  "PATH",
+                  "HOME",
+                  "USER"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully resolved environment variables",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolveResponse"
+                },
+                "example": {
+                  "resolvedValues": {
+                    "PATH": "/usr/local/bin:/usr/bin:/bin",
+                    "HOME": "/home/user",
+                    "USER": "user"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JSON request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid JSON request"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Method not allowed",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "Method not allowed"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResolveRequest": {
+        "type": "object",
+        "required": [
+          "resolve"
+        ],
+        "properties": {
+          "resolve": {
+            "type": "array",
+            "description": "List of environment variable names to resolve",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "PATH",
+              "HOME"
+            ]
+          }
+        }
+      },
+      "ResolveResponse": {
+        "type": "object",
+        "required": [
+          "resolvedValues"
+        ],
+        "properties": {
+          "resolvedValues": {
+            "type": "object",
+            "description": "Map of environment variable names to their resolved values",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "example": {
+              "PATH": "/usr/local/bin:/usr/bin:/bin",
+              "HOME": "/home/user"
+            }
+          }
+        }
+      }
+    }
+  }
+}

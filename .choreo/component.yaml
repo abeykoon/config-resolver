@@ -1,0 +1,49 @@
+# +required The configuration file schema version
+schemaVersion: 1.2
+
+# +optional Incoming connection details for the component
+endpoints:
+  # +required Unique name for the endpoint.
+  # This name will be used when generating the managed API
+  - name: configresolve
+    # +optional Display name for the endpoint.
+    displayName: ConfigResolve
+    # +required Service section has the user service endpoint details
+    service:
+      # +optional Base path of the API that gets exposed via the endpoint.
+      # This is mandatory if the endpoint type is set to REST, GraphQL or WS.
+      basePath: /test/resolve/values
+      # +required Numeric port value that gets exposed via the endpoint
+      port: 9090
+    # +required Type of traffic that the endpoint is accepting.
+    # Allowed values: REST, GraphQL, GRPC, TCP, UDP, WS.
+    type: REST
+    # +optional Network level visibilities of the endpoint.
+    # Accepted values: Project|Organization|Public(Default).
+    networkVisibilities:
+      - Public
+      - Project
+    # +optional Path to the schema definition file. Defaults to wild card route if not provided
+    # This is only applicable to REST and WS endpoint types.
+    # The path should be relative to the docker context.
+    schemaFilePath: openapi.json
+
+dependencies:
+    connectionReferences:
+    - name: MyConnection
+      resourceRef: messaging:/[AWS SQS] Dev records Queue1
+
+configurations:
+  # +optional List of environment variables to be injected into the component.
+  env:
+    # +required Name of the environment variable
+    - name: SERVICE_URL
+      # +required value source
+      # Allowed value sources: connectionRef, configForm
+      valueFrom:
+        # +required Choreo connection value source
+        connectionRef:
+          # +required Choreo connection name to refer the value from
+          name: MyConnection
+          # +required Choreo connection configuration key to refer the value from
+          key: ServiceURL
