@@ -30,20 +30,20 @@ endpoints:
 
 dependencies:
     connectionReferences:
-    - name: MyConnection
-      resourceRef: messaging:/[AWS SQS] Dev records Queue1
+    - name: SQSConnection
+      resourceRef: Messaging:[AWS SQS] Dev records Queue1
 
 configurations:
   # +optional List of environment variables to be injected into the component.
   env:
     # +required Name of the environment variable
-    - name: SERVICE_URL
+    - name: QUEUE_URL
       # +required value source
       # Allowed value sources: connectionRef, configForm
       valueFrom:
         # +required Choreo connection value source
         connectionRef:
           # +required Choreo connection name to refer the value from
-          name: MyConnection
+          name: SQSConnection
           # +required Choreo connection configuration key to refer the value from
-          key: ServiceURL
+          key: queueUrl
