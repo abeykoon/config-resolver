@@ -31,8 +31,8 @@ endpoints:
 dependencies:
     connectionReferences:
     # +required Name of the connection you want to use
-    - name: My SQS Connection New
-      resourceRef: messaging:[AWS SQS] Dev records Queue1
+    - name: My Test Queue Connection Latest
+      resourceRef: messaging:Platform Records Queue
 
 configurations:
   # +optional List of environment variables to be injected into the component.
@@ -45,6 +45,6 @@ configurations:
         # +required Choreo connection value source
         connectionRef:
           # +required Choreo connection name to refer the value from
-          name: SQSConnection
+          name: My Test Queue Connection Latest
           # +required Choreo connection configuration key to refer the value from
           key: queueUrl
