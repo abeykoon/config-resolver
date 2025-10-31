@@ -52,6 +52,7 @@ func resolveValuesHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/test/resolve/values", resolveValuesHandler)
+	http.HandleFunc("/test/resolve/values/", resolveValuesHandler)
 
 	port := ":9090"
 	log.Printf("Started service on port: %s", port)
