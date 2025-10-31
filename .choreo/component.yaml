@@ -31,7 +31,7 @@ endpoints:
 dependencies:
     connectionReferences:
     - name: SQSConnection
-      resourceRef: Messaging:[AWS SQS] Dev records Queue1
+      resourceRef: messaging:[AWS SQS] Dev records Queue1
 
 configurations:
   # +optional List of environment variables to be injected into the component.
