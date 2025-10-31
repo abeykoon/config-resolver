@@ -30,7 +30,8 @@ endpoints:
 
 dependencies:
     connectionReferences:
-    - name: SQSConnection
+    # +required Name of the connection you want to use
+    - name: My SQS Connection New
       resourceRef: messaging:[AWS SQS] Dev records Queue1
 
 configurations:
