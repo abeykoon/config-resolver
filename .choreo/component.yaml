@@ -31,20 +31,20 @@ endpoints:
 dependencies:
     connectionReferences:
     # +required Name of the connection you want to use
-    - name: My Test Queue Connection Latest
-      resourceRef: messaging:Platform Records Queue
+    - name: Employee Database connection
+      resourceRef: database:Dev Employee Cosmos DB
 
 configurations:
   # +optional List of environment variables to be injected into the component.
   env:
     # +required Name of the environment variable
-    - name: QUEUE_URL
+    - name: DATABASE_NAME
       # +required value source
       # Allowed value sources: connectionRef, configForm
       valueFrom:
         # +required Choreo connection value source
         connectionRef:
           # +required Choreo connection name to refer the value from
-          name: My Test Queue Connection Latest
+          name: Employee Database connection
           # +required Choreo connection configuration key to refer the value from
-          key: queueUrl
+          key: databaseName
