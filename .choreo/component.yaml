@@ -30,7 +30,7 @@ endpoints:
 
 dependencies:
     connectionReferences:
-    - name: Employee DB Connection Latest
+    - name: Lucky-DB-Conn
       resourceRef: database:Dev-Employee-Cosmos-DB
 
 
