@@ -30,8 +30,8 @@ endpoints:
 
 dependencies:
     connectionReferences:
-    - name: Lucky-DB-Conn
-      resourceRef: database:Dev-Employee-Cosmos-DB
+    - name: WSO2-Cosmos-DB-Conn
+      resourceRef: database:Dev-WSO2-Cosmos-DB
 
 
 # configurations:
