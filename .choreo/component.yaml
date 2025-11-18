@@ -30,8 +30,8 @@ endpoints:
 
 dependencies:
     connectionReferences:
-    - name: My DB Connection
-      resourceRef: database:lakidb4
+    - name: Employee DB Connection Latest
+      resourceRef: database:Dev-Employee-Cosmos-DB
 
 
 # configurations:
