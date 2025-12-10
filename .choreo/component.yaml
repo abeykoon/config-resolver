@@ -33,6 +33,33 @@ dependencies:
     - name: WSO2-Cosmos-DB-Conn
       resourceRef: database:Dev-WSO2-Cosmos-DB
 
+configurations:
+  # +optional List of environment variables to be injected into the component.
+  env:
+    # +required Name of the environment variable
+    - name: DATABASE_USER
+      valueFrom:
+        # +required config form value source
+        configForm:
+            # +optional display name inside the config form, name will be shown in config form if not specified
+            displayName: DB User
+            # +optional default value is true if not specified
+            required: true
+            # +optional default value is string if not specified
+            # Allowed types - string, number, boolean, secret
+            type: string
+    - name: DATABASE_PASSWORD
+      valueFrom:
+        # +required config form value source
+        configForm:
+            # +optional display name inside the config form, name will be shown in config form if not specified
+            displayName: DB Password
+            # +optional default value is true if not specified
+            required: true
+            # +optional default value is string if not specified
+            # Allowed types - string, number, boolean, secret
+            type: secret
+
 
 # configurations:
 #   # +optional List of environment variables to be injected into the component.
